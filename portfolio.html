@@ -51,23 +51,39 @@
 
     <ul class="track-list">
         <li onclick="playAudio('music/demo_260214.mp3', 'BIAS, early demo')">
-            <strong>Early demo of BIAS</strong> - Sonic storytelling
+            <strong>Early demo of BIAS</strong> - 260214
         </li>
         <li onclick="playAudio('music/eisler.mp3', 'Brecht/Eisler')">
             <strong>Brecht/Eisler</strong> - Arranger/Musician
         </li>
-        <li onclick="playAudio('music/01 Ekmans Ö.mp3', 'Brigaden - Upcoming 2026')">
-            <strong>Brigaden</strong> - Instrumental from Malmö
+<li onclick="playAudio('music/01_Ekmans_O.mp3', 'A composition of mine from the album Tjocka Stenen by Brigaden')">
+            <strong>Brigaden</strong> - Tjocka Stenen
         </li>
     </ul>
 
-    <script>
-        function playAudio(src, title) {
+ <script>
+        function playAudio(src, title, element) {
             const player = document.getElementById('audio-player');
             const display = document.getElementById('now-playing');
-            player.src = src;
+            
+            // 1. Update visual "active" state in the list
+            const tracks = document.querySelectorAll('.track-list li');
+            tracks.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+
+            // 2. Load and Play the audio
             display.innerText = "Now Playing: " + title;
-            player.play();
+            player.src = src;
+            player.load(); // Important: Resets the player for the new file
+            
+            // 3. Handle playback with a "promise" (prevents browser errors)
+            const playPromise = player.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Playback was prevented. Please click the Play button manually.");
+                });
+            }
         }
     </script>
 
