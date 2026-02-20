@@ -4,53 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discography | Olle Vikström</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #F9F9F9; color: #000; font-family: 'Helvetica', sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; }
-        h1, h2 { border-bottom: 1px solid #000; padding-bottom: 10px; }
-        nav { margin-bottom: 30px; }
-        nav a { text-decoration: none; color: #000; margin-right: 15px; }
+        /* Global Styles matched to index/bio */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* The Grid Layout */
+        body {
+            background-color: #F9F9F9;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            display: flex; gap: 25px;
+            margin-bottom: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover { opacity: 0.5; }
+        nav a.active { font-weight: 700; text-decoration: underline; }
+
+        .divider {
+            height: 8px;
+            background-color: #000;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        /* Offset Layout */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 25%; 
+        }
+
+        .section { margin-bottom: 80px; }
+
+        h2 {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* Adjusted Grid for the 198px Players */
         .album-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            /* Creates columns just wide enough for the players */
+            grid-template-columns: repeat(auto-fill, 198px); 
+            gap: 40px;
+            margin-top: 20px;
         }
+
         .album-item {
-            background: #fff;
-            border: 1px solid #000;
-            padding: 10px;
+            width: 198px; /* Forces the box to match the player exactly */
+            text-align: left;
         }
-        iframe { width: 198px; height: 340px; border: 0; }
+
+        .album-item strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .album-item p {
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        iframe { 
+            border: 0; 
+            width: 198px; 
+            height: 340px; 
+            display: block;
+        }
+
+        /* Mobile Fix */
+        @media (max-width: 768px) {
+            main { padding-left: 0; }
+            .album-grid { justify-content: center; } /* Centers albums on mobile */
+        }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>Selected Discography</h1>
+        <h1>Olle Vikström</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="bio.html">Bio</a>
-            <a href="discography.html" style="font-weight:bold;">Discography</a>
+            <a href="discography.html" class="active">Discography</a>
         </nav>
+        <div class="divider"></div>
     </header>
 
-    <div class="album-grid">
-        <div class="album-item">
-            <strong>Kranen - Sing a song fighter</strong>
-            <p>Clarinet/Bass Clarinet</p>
-           <iframe style="border: 0; width: 198px; height: 340px;" src="https://bandcamp.com/EmbeddedPlayer/album=893349693/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://singasongfighter.bandcamp.com/album/kranen">Kranen by Olle Vikström</a></iframe>
-        </div>
+    <main>
+        <section class="section">
+            <h2>Selected Discography</h2>
+            
+            <div class="album-grid">
+                <div class="album-item">
+                    <strong>Kranen</strong>
+                    <p>Sing a song fighter<br>My first solo album</p>
+                    <iframe src="https://bandcamp.com/EmbeddedPlayer/album=893349693/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless></iframe>
+                </div>
 
-        <div class="album-item">
-            <strong>Brigaden - Tjocka Stenen</strong>
-            <p>Composer/Musician</p>
-            <iframe style="border: 0; width: 198px; height: 340px;" src="https://bandcamp.com/EmbeddedPlayer/album=369897795/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://singasongfighter.bandcamp.com/album/tjocka-stenen-2">Tjocka stenen by Brigaden</a></iframe>
-        </div>
-        
-        </div>
+                <div class="album-item">
+                    <strong>Tjocka Stenen</strong>
+                    <p>Brigaden<br>Composer/Musician</p>
+                    <iframe src="https://bandcamp.com/EmbeddedPlayer/album=369897795/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless></iframe>
+                </div>
+
+                <div class="album-item">
+                    <strong>Amen amen amen</strong>
+                    <p>Beloveds<br>Music by Channa Riedel</p>
+                    <iframe style="border: 0; width: 198px; height: 340px;" src="https://bandcamp.com/EmbeddedPlayer/album=4206989444/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://belovedsorchestra.bandcamp.com/album/amen-amen-amen">Amen, amen, amen by Beloveds</a></iframe>
+                </div>
+
+               <div class="album-item">
+                    <strong>Croniques vol 1</strong>
+                    <p>Albert Cirera, Olle Vikström<br>Improvised music with saxophone player Albert Cirera</p>
+                   <iframe style="border: 0; width: 198px; height: 340px;" src="https://bandcamp.com/EmbeddedPlayer/album=246270728/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://discordianrecords.bandcamp.com/album/cr-niques-1">Cròniques 1 by Albert Cirera &amp; Olle Vikström</a></iframe>
+                </div>
+
+                    <div class="album-item">
+                    <strong>Ellen Pettersson</strong>
+                    <p>Origo<br>A dear friend and great composer. I play a little bit on it too</p>
+                   <iframe style="border: 0; width: 198px; height: 340px;" src="https://bandcamp.com/EmbeddedPlayer/album=246270728/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://discordianrecords.bandcamp.com/album/cr-niques-1">Cròniques 1 by Albert Cirera &amp; Olle Vikström</a></iframe>
+                </div>
+
+                   <div class="album-item">
+                    <strong>Albert Cirera</strong>
+                    <p>Croniques<br> A great quartet I was invited to play with</p>
+                   <iframe style="border: 0; width: 198px; height: 340px;" src="https://bandcamp.com/EmbeddedPlayer/album=246270728/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://discordianrecords.bandcamp.com/album/cr-niques-1">Cròniques 1 by Albert Cirera &amp; Olle Vikström</a></iframe>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
 </body>
 </html>
-
-
