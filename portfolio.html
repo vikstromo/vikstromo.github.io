@@ -6,7 +6,7 @@
     <title>Portfolio | Olle Vikström</title>
     <style>
         body {
-            background-color: #F9F9F9; /* Egg white */
+            background-color: #F9F9F9;
             color: #000000;
             font-family: 'Helvetica', sans-serif;
             line-height: 1.6;
@@ -30,6 +30,8 @@
             cursor: pointer; 
         }
         .track-list li:hover { background: #f0f0f0; }
+        /* Style for the active track */
+        .active { background: #ebebeb; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -44,46 +46,44 @@
 
     <div class="player-container">
         <h3 id="now-playing">Select a track to listen</h3>
-        <audio id="audio-player" controls>
-            <source src="" type="audio/mpeg">
-        </audio>
+        <audio id="audio-player" controls src=""></audio>
     </div>
 
     <ul class="track-list">
-        <li onclick="playAudio('music/demo_260214.mp3', 'BIAS, early demo')">
+        <li onclick="playAudio('music/demo_260214.mp3', 'BIAS, early demo', this)">
             <strong>Early demo of BIAS</strong> - 260214
         </li>
-        <li onclick="playAudio('music/eisler.mp3', 'Brecht/Eisler')">
+        <li onclick="playAudio('music/eisler.mp3', 'Brecht/Eisler', this)">
             <strong>Brecht/Eisler</strong> - Arranger/Musician
         </li>
-<li onclick="playAudio('music/01_Ekmans_O.mp3', 'A composition of mine from the album Tjocka Stenen by Brigaden')">
+        <li onclick="playAudio('music/01_Ekmans_O.mp3', 'A composition of mine from Tjocka Stenen', this)">
             <strong>Brigaden</strong> - Tjocka Stenen
         </li>
     </ul>
 
- <script>
+    <script>
         function playAudio(src, title, element) {
             const player = document.getElementById('audio-player');
             const display = document.getElementById('now-playing');
             
-            // 1. Update visual "active" state in the list
+            // Update visual "active" state
             const tracks = document.querySelectorAll('.track-list li');
             tracks.forEach(t => t.classList.remove('active'));
-            element.classList.add('active');
+            
+            // Only add class if 'element' was passed correctly
+            if (element) {
+                element.classList.add('active');
+            }
 
-            // 2. Load and Play the audio
+            // Update text and source
             display.innerText = "Now Playing: " + title;
             player.src = src;
-            player.load(); // Important: Resets the player for the new file
             
-            // 3. Handle playback with a "promise" (prevents browser errors)
-            const playPromise = player.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Playback was prevented. Please click the Play button manually.");
-                });
-            }
+            // Force reload and play
+            player.load();
+            player.play().catch(error => {
+                console.log("Autoplay prevented or file error:", error);
+            });
         }
     </script>
 
