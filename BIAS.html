@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIAS | Olle Vikström</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #F9F9F9; color: #000; font-family: 'Inter', sans-serif; padding: 40px; letter-spacing: -0.02em; }
+
+        /* Header logic matched to your other pages */
+        header { max-width: 1200px; margin: 0 auto 20px auto; }
+        h1 { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+        nav { display: flex; gap: 25px; margin-bottom: 15px; }
+        nav a { text-decoration: none; color: #000; font-size: 0.9rem; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.5; }
+        .divider { height: 8px; background-color: #000; width: 100%; margin-bottom: 60px; }
+
+        /* Offset Layout */
+        main { max-width: 1200px; margin: 0 auto; padding-left: 25%; }
+        .section { margin-bottom: 80px; max-width: 750px; }
+        h2 { font-size: 1.1rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid #000; padding-bottom: 5px; display: inline-block; }
+
+        /* Audio Player for many files */
+        .player-container { background: #fff; padding: 20px; border: 1px solid #000; margin-bottom: 20px; position: sticky; top: 20px; z-index: 10; }
+        #now-playing { font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+        audio { width: 100%; filter: grayscale(1); }
+
+        .scroll-list { max-height: 400px; overflow-y: auto; border: 1px solid #eee; padding-right: 10px; }
+        .track-list { list-style: none; }
+        .track-list li { padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 0.9rem; display: flex; justify-content: space-between; }
+        .track-list li:hover { background: #f0f0f0; }
+        .active-track { font-weight: 700; background: #eee; }
+
+        /* Code Block Styling */
+        pre {
+            background: #f0f0f0;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #000;
+        }
+        code {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        @media (max-width: 768px) { main { padding-left: 0; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Olle Vikström</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="bio.html">Bio</a>
+            <a href="discography.html">Discography</a>
+        </nav>
+        <div class="divider"></div>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2>BIAS — Process & Documentation</h2>
+            <p style="margin-bottom: 20px;">BIAS is a self-contained listener and player system. Below is a collection of early tests and the SuperCollider logic behind the behavioral engine.</p>
+            
+            <div class="player-container">
+                <p id="now-playing">Select a process recording</p>
+                <audio id="audio-player" controls src=""></audio>
+            </div>
+
+            <div class="scroll-list">
+                <ul class="track-list">
+                    <li onclick="playAudio('music/bias_test_01.mp3', 'Test 01: Buffer Analysis', this)">
+                        <span>01. Buffer Analysis Test</span>
+                        <span style="opacity:0.5">04:12</span>
+                    </li>
+                    <li onclick="playAudio('music/bias_test_02.mp3', 'Test 02: Real-time Feedback', this)">
+                        <span>02. Real-time Feedback Loop</span>
+                        <span style="opacity:0.5">02:45</span>
+                    </li>
+                    </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>The Code</h2>
+            <p>A snippet of the behavioral agent logic in SuperCollider:</p>
+            <pre><code>(
+// Behavioral Agent: Frequency Analysis to Memory
+SynthDef(\biasAgent, { |in=0, threshold=0.1|
+    var input = AudioIn.ar(in);
+    var freq, hasFreq;
+    # freq, hasFreq = Pitch.kr(input);
+    
+    // Logic for behavior shifting based on recent pitch history
+    SendReply.kr(Impulse.kr(10), '/pitchData', [freq, hasFreq]);
+}).add;
+)</code></pre>
+        </section>
+    </main>
+
+    <script>
+        function playAudio(src, title, element) {
+            const player = document.getElementById('audio-player');
+            const display = document.getElementById('now-playing');
+            const tracks = document.querySelectorAll('.track-list li');
+            
+            tracks.forEach(t => t.classList.remove('active-track'));
+            element.classList.add('active-track');
+
+            display.innerText = "Playing: " + title;
+            player.src = src;
+            player.load();
+            player.play();
+        }
+    </script>
+</body>
+</html>
