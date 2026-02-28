@@ -6,7 +6,7 @@ url: /BIAS.html
 
 <div class="section">
     <h2 style="text-transform: uppercase; margin-bottom: 10px;">Project: BIAS</h2>
-    <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">An improvising musical companion</p>
+    <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">An improvising musical companion for Woodwinds & SuperCollider</p>
 
     <div class="tab-nav">
         <button class="tab-button active" onclick="openTab(event, 'concept')">What is it?</button>
@@ -16,6 +16,7 @@ url: /BIAS.html
     </div>
 
     <div id="concept" class="tab-content" style="display: block;">
+        
         <div class="signal-chain">
             <div class="node"><span class="label">Input</span><strong>Clarinet</strong></div>
             <div class="arrow">→</div>
@@ -27,7 +28,59 @@ url: /BIAS.html
             <div class="arrow">→</div>
             <div class="node"><span class="label">Output</span><strong>Spatial Synth</strong></div>
         </div>
-        <p>Basically BIAS is supposed to be a companion to me when playing woodwinds... [Your existing text here]</p>
+
+        <p>
+            Basically BIAS is supposed to be a companion to me when playing woodwinds. I'm a musician that works with improvisation as my
+            main method for making music. Everything is done in SuperCollider, except for adding some minor post-production 
+            on the clarinet sound in a DAW. 
+        </p>
+        <p>
+            I am very inspired by early Swedish electronic music. I'm terrible at doing music using sequencers.
+            I like impulses (emotional, not electric). I like white noise, filters and sine waves and what you can do with some simple cooking. 
+        </p>
+        <p>
+            <strong>BIAS can be divided into four steps:</strong>
+            <br><br>
+            It receives sound from an audio input. It then has what I call a slow listener. It gives an output that answers "How have I've been playing recently?". 
+            This is tricky and not perfect at all. But it gives me a value (0-1) that answers how active I've been lately. So if I have played a lot, then it gives me
+            1, if I have been mostly silent -> 0. This can function as an LFO for other parameters during performance. 
+            Then there is a simple sample recorder and a sample playback. I use an IntraMic from Viga Tools to 
+            get a signal with almost zero noise and no feedback. 
+        </p>
+        <p>
+            Both audio and data goes into the heart of the system. Here I use my modules/synths. Instead of having synths that I control using midi or 
+            controlling by a graphic interface, I feed data to the synths. Amplitude, pitch-info, spectral centroid and flatness are used to trigger 
+            sound, changing sound, changing pitch, triggering calculations for various stuff. Most of the modules also has a slight 
+            generative, or independent, behaviour built in. This is so that the modules do not depend on me to play themselves. All of these modules sum up
+            to a shared signal that then goes in to the fx chain. I'm not an expert on synthesis or synth design. So the library is growing and changing a lot. 
+        </p>
+        <p>
+            Im not interested in creating a loop station for my clarinet. So the clean clarinet signal is not going past the modules. If I sample something, it
+            is mostly the processed signal. And then I can feed that sample in to the modules again. This can create some really fun layers.
+        </p>
+        <p>
+            The synths go into an FX chain. The fx-chain system allows me to click-free (almost) swap the order of effects. This opens
+            up for some fun experiments. It started out with the idea to have like a pitch shifting reverb. Usually when I design effects for 
+            my music in SuperCollider I try to achieve these big effects that have a lot of different functions. Someone at sccode.org posted
+            this sitar-synth which split the instrument into the attack (finger/pick), the string, the resonator and the room. I started messing around
+            with this and realized this was way smarter than building a one-piece synth. So what I did was to divide my pitch shifting reverb into three parts. 
+            The delay, the pitch and the time. Later, I added a blur as well. Then I started experimenting with shifting the order of these things and got some 
+            very fun sound. I then added a binshift, a formant and some echo and feedback delays. Then I added some functionality so that I could swap the order
+            really quick and easy. And I centralized the whole system so that I use 4 macros to control all of the effects: Chaos, density, space and identity. 
+        </p>
+        <p>
+            The last part is just a synth that can do some spatialisation. Autopanning, and expand the system to a multichannel setup. 
+            Every chain has it's own spatial synth. This makes it possible to create some fun movements in a live setup. 
+        </p>
+        <p>
+            I control the system using a Morningstar MC6 foot pedal and a Faderfox UC4 midi controller. Mostly I just set a "mood". This is like a preset. 
+            It includes which modules to choose, some base values for the parameter, the fx-chain and some presets there to. 
+            The idea is to have some kind of control of the system. There is no price for me if I have a completly indepedent system. Just as long as it
+            is fun to play with and sounds good. The fun comes from getting a lot of inspiration when playing. So with my physical controllers I can 
+            sample either the clean recording or the sound from the modules. I can choose a mood. I can choose if the mood is going to follow my playing or counter it.
+            I can also make some mixing if necessary and I can change the parameters if it sounds bad or not fun enough. I can also use an expression
+            pedal to morph between different parameter values for the modules. 
+        </p>
     </div>
 
     <div id="audio" class="tab-content">
@@ -35,6 +88,7 @@ url: /BIAS.html
             <p id="now-playing" style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Select a process recording</p>
             <audio id="audio-player" controls style="width: 100%; filter: grayscale(1);"></audio>
         </div>
+
         <ul class="track-list">
             {% for entry in site.data.audio_blog %}
             <li onclick="playAudio('{{ entry.file }}', '{{ entry.title }}', this)">
@@ -53,6 +107,7 @@ url: /BIAS.html
     <div id="code" class="tab-content">
         <h3>Soundcheck Logic</h3>
         <pre><code>{% include_relative _code/soundcheck.scd %}</code></pre>
+
         <h3>FX-Chain System</h3>
         <pre><code>{% include_relative _code/fx-chain.scd %}</code></pre>
     </div>
@@ -65,6 +120,7 @@ url: /BIAS.html
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
         }
+        
         tablinks = document.querySelectorAll(".tab-button, .tab-link");
         tablinks.forEach(btn => btn.classList.remove("active"));
         
@@ -73,27 +129,35 @@ url: /BIAS.html
         if (evt) {
             evt.currentTarget.classList.add("active");
         } else {
-            // Highlighting when loading via URL hash
-            const activeBtn = Array.from(document.querySelectorAll('.tab-button'))
-                                   .find(btn => btn.getAttribute('onclick').includes(tabName));
-            if (activeBtn) activeBtn.classList.add("active");
+            // Auto-highlight button if coming from a URL hash
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabName)) btn.classList.add("active");
+            });
         }
     }
 
     function playAudio(src, title, element) {
         const player = document.getElementById('audio-player');
         const display = document.getElementById('now-playing');
+        
+        // Handle dropdown logic
         const tracks = document.querySelectorAll('.track-list li');
         tracks.forEach(t => t.classList.remove('active-track'));
         element.classList.add('active-track');
+
+        // Handle Audio
         display.innerText = "Playing: " + title;
         player.src = src;
         player.load();
         player.play();
     }
 
+    // Check URL for deep links on load
     window.onload = function() {
         const hash = window.location.hash.replace('#', '');
-        if (hash) openTab(null, hash);
+        if (hash) {
+            openTab(null, hash);
+        }
     };
 </script>
