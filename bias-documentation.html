@@ -21,10 +21,12 @@ url: /bias-documentation.html
         <h3>{{ post.title }}</h3>
         {{ post.content }}
     </div>
+    {% else %}
+    <p>No documentation entries found yet. Add a .md file to your _posts folder!</p>
     {% endfor %}
 
     <div class="post-nav">
-        <a href="#">← Older Entries</a>
-        <a href="#">Newer Entries →</a>
+        <a href="#">&larr; Older Entries</a>
+        <a href="#">Newer Entries &rarr;</a>
     </div>
 </div>

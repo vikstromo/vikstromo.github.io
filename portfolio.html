@@ -1,165 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Olle Vikström</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Global Styles - Matched to index/bio/discography */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+---
+layout: default
+title: Portfolio
+url: /portfolio.html
+---
 
-        body {
-            background-color: #F9F9F9;
-            color: #000;
-            font-family: 'Inter', sans-serif;
-            padding: 40px;
-            letter-spacing: -0.02em;
-        }
+<section class="section">
+    <h2>Audio Portfolio</h2>
+    
+    <div class="player-container">
+        <h3 id="now-playing" style="font-size: 0.9rem; margin-bottom: 10px;">Select a track to listen</h3>
+        <audio id="audio-player" controls src="" style="width: 100%; filter: grayscale(1);"></audio>
+    </div>
 
-        header {
-            max-width: 1200px;
-            margin: 0 auto 20px auto;
-        }
+    <ul class="track-list">
+        <li style="border-bottom: none;">
+            <a href="/BIAS.html" style="color: #000; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: inline-block; text-decoration: none;">
+                View the BIAS-system project &rarr;
+            </a>
+        </li>
+        <li onclick="playAudio('music/01_Ekmans_O.mp3', 'Brigaden - Tjocka Stenen', this)" style="padding: 15px 0; border-bottom: 1px solid #eee; cursor: pointer;">
+            <strong>Brigaden</strong> &mdash; Tjocka Stenen
+        </li>
+    </ul>
+</section>
 
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        nav {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 15px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #000;
-            font-size: 0.9rem;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover { opacity: 0.5; }
-        nav a.active { font-weight: 700; text-decoration: underline; }
-
-        .divider {
-            height: 8px;
-            background-color: #000;
-            width: 100%;
-            margin-bottom: 60px;
-        }
-
-        /* Offset Layout */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 25%; 
-        }
-
-        .section { margin-bottom: 80px; max-width: 700px; }
-
-        h2 {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid #000;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        /* Player Styling */
-        .player-container {
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #000;
-            margin-bottom: 30px;
-        }
-
-        #now-playing {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        audio { width: 100%; filter: grayscale(1); }
-
-        /* Track List Styling */
-        .track-list { list-style: none; padding: 0; }
-        .track-list li { 
-            padding: 15px 0; 
-            border-bottom: 1px solid #eee; 
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: opacity 0.2s;
-        }
-        .track-list li:hover { opacity: 0.5; }
-        .active-track { font-weight: 700; }
-
-        /* Mobile Fix */
-        @media (max-width: 768px) {
-            main { padding-left: 0; }
-            body { padding: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Olle Vikström</h1>
-        <nav>
-             <a href="index.html" class="active">Home</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="bio.html">Bio</a>
-            <a href="discography.html">Discography</a>
-             <a href="BIAS.html">BIAS</a>
-        </nav>
-        <div class="divider"></div>
-    </header>
-
-    <main>
-        <section class="section">
-            <h2>Audio Portfolio</h2>
-            
-            <div class="player-container">
-                <h3 id="now-playing">Select a track to listen</h3>
-                <audio id="audio-player" controls src=""></audio>
-            </div>
-
-            <ul class="track-list">
-        <br>
-        <a href="BIAS.html" style="color: #000; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; margin-top: 5px; display: inline-block;">
-        Here is a page for my BIAS-system →
-    </a>
-</li>
-              
-                <li onclick="playAudio('music/01_Ekmans_O.mp3', 'Brigaden - Tjocka Stenen', this)">
-                    <strong>Brigaden</strong> — Tjocka Stenen
-                </li>
-            </ul>
-        </section>
-    </main>
-
-    <script>
-        function playAudio(src, title, element) {
-            const player = document.getElementById('audio-player');
-            const display = document.getElementById('now-playing');
-            
-            // Visual feedback for selection
-            const tracks = document.querySelectorAll('.track-list li');
-            tracks.forEach(t => t.classList.remove('active-track'));
-            element.classList.add('active-track');
-
-            // Load and Play
-            display.innerText = "Now Playing: " + title;
-            player.src = src;
-            player.load();
-            player.play().catch(e => console.log("Playback nudge needed"));
-        }
-    </script>
-
-</body>
-</html>
+<script>
+    function playAudio(src, title, element) {
+        const player = document.getElementById('audio-player');
+        const display = document.getElementById('now-playing');
+        const tracks = document.querySelectorAll('.track-list li');
+        tracks.forEach(t => t.classList.remove('active-track'));
+        element.classList.add('active-track');
+        display.innerText = "Now Playing: " + title;
+        player.src = src;
+        player.load();
+        player.play().catch(e => console.log("Playback nudge needed"));
+    }
+</script>
