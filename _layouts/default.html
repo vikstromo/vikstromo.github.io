@@ -19,13 +19,12 @@
         main { max-width: 1200px; margin: 0 auto; padding-left: 25%; }
         .section { margin-bottom: 80px; max-width: 800px; }
         h2 { font-size: 1.1rem; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #000; padding-bottom: 5px; display: inline-block; }
-        .project-item { margin-bottom: 25px; }
+        
+        p { line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 30px; line-height: 1.7; }
-        .streaming-links a { display: inline-block; margin-right: 15px; margin-bottom: 10px; padding: 8px 16px; border: 1px solid #000; text-decoration: none; color: #000; font-size: 0.8rem; transition: 0.3s; }
-        .streaming-links a:hover { background: #000; color: #F9F9F9; }
 
-        /* --- BIAS & BLOG SPECIFIC STYLES --- */
+        /* --- BIAS TABS --- */
         .tab-nav { display: flex; gap: 40px; border-bottom: 1px solid #ddd; margin-bottom: 40px; }
         .tab-button, .tab-link {
             background: none; border: none; padding: 15px 0;
@@ -39,160 +38,50 @@
         .tab-content { display: none; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        p { line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
-        h3 { margin: 40px 0 20px 0; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        /* --- AUDIO BLOG (ACCORDION) --- */
+        .track-list { list-style: none; padding: 0; }
+        .track-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+            display: block; /* Overriding the global LI margin */
+        }
+        .track-header { display: flex; justify-content: space-between; align-items: center; }
+        .details-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; }
+        .track-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        .active-track .track-details { max-height: 400px; margin-top: 15px; }
+        .active-track .details-label { opacity: 1; font-weight: 700; }
 
-        /* Audio Player */
-        .player-container { background: #fff; padding: 20px; border: 1px solid #000; margin-bottom: 20px; position: sticky; top: 20px; z-index: 10; }
-        .track-list { list-style: none; }
-        .track-list li { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; margin-bottom: 0; }
-        .track-list li:hover { background: #f0f0f0; }
-        .active-track { font-weight: 700; background: #eee; }
+        /* --- SIGNAL CHAIN --- */
+        .signal-chain { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #eee; padding: 20px; margin: 30px 0; border-radius: 4px; }
+        .node { text-align: center; flex: 1; }
+        .node span.label { display: block; font-size: 0.6rem; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+        .node strong { font-size: 0.8rem; }
+        .arrow { color: #ccc; padding: 0 10px; }
 
-        /* Code Blocks */
-        pre { background: #f0f0f0; padding: 25px; margin: 20px 0; overflow-x: auto; border-left: 4px solid #000; }
+        /* --- CODE BLOCKS --- */
+        pre { background: #f0f0f0; padding: 20px; margin: 20px 0; overflow-x: auto; border-left: 4px solid #000; }
         code { font-family: 'Space Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #333; }
 
-        /* Blog Entries */
-        .blog-entry { margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px; }
-        .date { font-size: 0.75rem; font-weight: 700; opacity: 0.4; letter-spacing: 0.05em; }
-        .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 20px; border-top: 1px solid #000; }
-        .post-nav a { text-decoration: none; color: #000; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
         /* Mobile Fix */
-        @media (max-width: 768px) { main { padding-left: 0; } body { padding: 20px; } }
-
-       
-.album-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 198px); 
-    gap: 40px;
-    margin-top: 20px;
-}
-
-.album-item {
-    width: 198px; 
-    text-align: left;
-}
-
-.album-item strong {
-    display: block;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-.album-item p {
-    font-size: 0.8rem;
-    margin-bottom: 15px;
-    color: #444;
-}
-
-iframe { 
-    border: 0; 
-    width: 198px; 
-    height: 340px; 
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .album-grid { justify-content: center; } 
-}
-
-/* Styling for Code Blocks */
-.code-container {
-    background: #f0f0f0;
-    border-left: 4px solid #000;
-    margin: 25px 0;
-    padding: 20px;
-    position: relative;
-    overflow-x: auto;
-}
-
-.code-container pre {
-    margin: 0;
-}
-
-.code-container code {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #333;
-    white-space: pre;
-}
-
-/* Label for the box (optional) */
-.code-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: block;
-    opacity: 0.5;
-}
-
-.blog-entry pre {
-    background: #f0f0f0;
-    padding: 15px;
-    overflow-x: auto;
-    border-radius: 4px;
-}
-
-.blog-entry code {
-    font-family: 'Space Mono', monospace;
-}
-
-/* Signal Chain Diagram */
-.signal-chain {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    border: 1px solid #eee;
-    padding: 20px;
-    margin: 30px 0;
-    border-radius: 4px;
-}
-
-.node {
-    text-align: center;
-    flex: 1;
-}
-
-.node span.label {
-    display: block;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 4px;
-    letter-spacing: 0.05em;
-}
-
-.node strong {
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-.node.highlight strong {
-    color: #000;
-    border-bottom: 2px solid #000;
-}
-
-.arrow {
-    color: #ccc;
-    padding: 0 10px;
-    font-family: 'Space Mono', monospace;
-}
-
-@media (max-width: 600px) {
-    .signal-chain { flex-direction: column; gap: 15px; }
-    .arrow { transform: rotate(90deg); }
-}
-
+        @media (max-width: 768px) { 
+            main { padding-left: 0; } 
+            body { padding: 20px; } 
+            .signal-chain { flex-direction: column; gap: 10px; }
+            .arrow { transform: rotate(90deg); }
+        }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Olle Vikström</h1>
         <nav>
@@ -200,15 +89,12 @@ iframe {
             <a href="/portfolio.html" {% if page.url == "/portfolio.html" %}class="active"{% endif %}>Portfolio</a>
             <a href="/bio.html" {% if page.url == "/bio.html" %}class="active"{% endif %}>Bio</a>
             <a href="/discography.html" {% if page.url == "/discography.html" %}class="active"{% endif %}>Discography</a>
-            <a href="/BIAS.html" {% if page.url == "/BIAS.html" %}class="active"{% endif %}>BIAS</a>
-          
+            <a href="/BIAS.html" {% if page.url == "/BIAS.html" or page.url == "/bias-documentation.html" %}class="active"{% endif %}>BIAS</a>
         </nav>
         <div class="divider"></div>
     </header>
-
     <main>
         {{ content }}
     </main>
-
 </body>
 </html>

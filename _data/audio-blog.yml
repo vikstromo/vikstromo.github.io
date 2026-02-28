@@ -1,0 +1,24 @@
+- title: "Bias demo 260222 04"
+  file: "music/demo_04_260222_comp.mp3"
+  date: "FEB 2022"
+  details: "Testing the interaction between the slow listener and the processing chain. Focus on stability."
+
+- title: "Bias demo 260222 05"
+  file: "music/demo_05_260222_comp.mp3"
+  date: "FEB 2022"
+  details: "Exploring high-density modules with spectral feedback. The engine began generating independent patterns here."
+
+- title: "Bias demo 260222 03"
+  file: "music/demo_03_260222.mp3"
+  date: "FEB 2022"
+  details: "Early prototype testing. Checking the amplitude follower response times."
+
+- title: "Bias demo 260224 01"
+  file: "music/demo_01_250424.mp3"
+  date: "APR 2024"
+  details: "Live process recording using the IntraMic for zero-feedback signal processing."
+
+- title: "Bias demo 260214"
+  file: "music/demo_260214.mp3"
+  date: "FEB 2024"
+  details: "Long-form behavioral test. Monitoring the autonomous decision-making engine over 10 minutes."
