@@ -9,7 +9,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #F9F9F9; color: #000; font-family: 'Inter', sans-serif; padding: 40px; letter-spacing: -0.02em; }
 
-        /* Header logic matched to your other pages */
         header { max-width: 1200px; margin: 0 auto 20px auto; }
         h1 { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
         nav { display: flex; gap: 25px; margin-bottom: 15px; }
@@ -17,36 +16,32 @@
         nav a:hover { opacity: 0.5; }
         .divider { height: 8px; background-color: #000; width: 100%; margin-bottom: 60px; }
 
-        /* Offset Layout */
         main { max-width: 1200px; margin: 0 auto; padding-left: 25%; }
-        .section { margin-bottom: 80px; max-width: 750px; }
-        h2 { font-size: 1.1rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid #000; padding-bottom: 5px; display: inline-block; }
+        .section { margin-bottom: 80px; max-width: 800px; }
 
-        /* Audio Player for many files */
+        .tab-nav { display: flex; gap: 40px; border-bottom: 1px solid #ddd; margin-bottom: 40px; }
+        .tab-button {
+            background: none; border: none; padding: 15px 0;
+            font-family: 'Inter', sans-serif; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            cursor: pointer; opacity: 0.4; transition: 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button.active { opacity: 1; font-weight: 700; border-bottom: 3px solid #000; }
+        .tab-content { display: none; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        p { line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+        h3 { margin: 40px 0 20px 0; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+
         .player-container { background: #fff; padding: 20px; border: 1px solid #000; margin-bottom: 20px; position: sticky; top: 20px; z-index: 10; }
-        #now-playing { font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
-        audio { width: 100%; filter: grayscale(1); }
-
-        .scroll-list { max-height: 400px; overflow-y: auto; border: 1px solid #eee; padding-right: 10px; }
         .track-list { list-style: none; }
-        .track-list li { padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 0.9rem; display: flex; justify-content: space-between; }
+        .track-list li { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; }
         .track-list li:hover { background: #f0f0f0; }
         .active-track { font-weight: 700; background: #eee; }
 
-        /* Code Block Styling */
-        pre {
-            background: #f0f0f0;
-            padding: 20px;
-            margin: 20px 0;
-            overflow-x: auto;
-            border-left: 4px solid #000;
-        }
-        code {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: #333;
-        }
+        pre { background: #f0f0f0; padding: 25px; margin: 20px 0; overflow-x: auto; border-left: 4px solid #000; }
+        code { font-family: 'Space Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #333; }
 
         @media (max-width: 768px) { main { padding-left: 0; } }
     </style>
@@ -65,106 +60,83 @@
     </header>
 
     <main>
-        <section class="section">
-            <h2>BIAS — Process & Documentation</h2>
-            <p style="margin-bottom: 20px;">
-                Basically BIAS is supposed to be a companion to me when playing woodwinds. I'm a musician that works with improvisation as my
-                main method for making music.  Everything is done in SuperCollider, except for adding some minor post-production 
-                on the clarinet sound in a DAW. 
+        <div class="section">
+            <h2 style="text-transform: uppercase; margin-bottom: 10px;">Project: BIAS</h2>
+            <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">Autonomous Behavioral Engine for Woodwinds & SuperCollider</p>
 
-                <br> I am very inspired by early Swedish electronic music. I'm terrible at doing music using sequencers.
-                I like impulses(emotional, not electric). I like white noise, filters and sine waves and what you can do with some simple cooking. 
-
-                <br>
-                <br>
-
-                BIAS can be divided into four steps.
-                <br>
-
-                <br>
-                It receives sound from an audio input. It then has what I call a slow listener. It gives an output that answers "How have I've been playing recently?". 
-                this is tricky and not perfect at all. But it gives me a value(0-1) that answers how active I've been lately. So if I have played a lot, then it gives me
-                1, if I have been mostly silent -> 0. This can function as an LFO for other parameters during performance. 
-                Then there is a simple sample recorder and a sample playback. I use an IntraMic from Viga Tools to 
-                get a signal with almost zero noise and no feedback. 
-                <br>
-
-                <br> Both audio and data goes into the heart of the system. Here I use my modules/synths. Instead of having synths that I control using midi or 
-                controlling by a graphic interface, I feed data to the synths. Amplitude, pitch-info, spectral centroid and flatness are used to trigger 
-                sound, changing sound, changing pitch, triggering calculations for various stuff. Most of the modules also has a slight 
-                generative, or independent, behaviour built in. This is so that the modules do not depend on me to play themselves. All of these modules sum up
-                to a shared signal that then goes in to the fx chain. I'm not an expert on synthesis or synth design. So the library is growing and changing a lot. 
-                <br>
-                <br>
-                Im not interested in creating a loop station for my clarinet. So the clean clarinet signal is not going past the modules. If I sample something, it
-                is mostly the processed signal. And then I can feed that sample in to the modules again. This can create some really fun layers.
-                <br>
-                <br> The synths go into an FX chain. The fx-chain system allows me to click-free(almost) swap the order of effects. This opens
-                up for some fun experiments. It started out with the idea to have like a pitch shifting reverb. Usually when I design effects for 
-                my music in SuperCollider I try to achieve these big effects that have a lot of different functions. Someone at sccode.org posted
-                this sitar-synth which split the instrument into the attack(finger/pick), the string, the resonator and the room. I started messing around
-                with this and realized this was way smarter than building a one-piece synth. So what I did was to divide my pitch shifting reverb into three parts. 
-                The delay, the pitch and the time. Later, I added a blur as well. Then I started experimenting with shifting the order of these things and got some 
-                very fun sound. I then added a binshift, a formant and some echo and feedback delays. Then I added some functionality so that I could swap the order
-                really quick and easy. And I centralized the whole system so that I use 4 macros to control all of the effects. Chaos, density, space and identity. 
-
-                <br><br>
-                The last part is just a synth that can do some spatialisation. Autopanning, and expand the system to a multichannel setup. 
-                Every chain has it's own spatial synth. This makes it possible to create some fun movements in a live setup. 
-
-                <br><br>
-                I control the system using a Morningstar MC6 foot pedal and a Faderfox UC4 midi controller. Mostly I just set a "mood". This is like a preset. 
-                It includes which modules to choose, some base values for the parameter, the fx-chain and some presets there to. 
-                The idea is to have some kind of control of the system. There is no price for me if I have a completly indepedent system. Just as long as it
-                is fun to play with and sounds good. The fun comes from getting a lot of inspiration when playing. So with my physical controllers I can 
-                sample either the clean recording or the sound from the modules. I can  choose a mood. I can choose if the mood is going to follow my playing or counter it.
-                I can also make some mixing if necessary and I can change the parameters if it sounds bad or not fun enough. I can also use an expression
-                pedal to morph between different parameter values for the modules. 
-
-                <br><br>
-                Below is a collection of early tests and the SuperCollider logic behind the behavioral engine.
-                
-    
-            
-            </p>
-            
-            <div class="player-container">
-                <p id="now-playing">Select a process recording</p>
-                <audio id="audio-player" controls src=""></audio>
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="openTab(event, 'concept')">What is it?</button>
+                <button class="tab-button" onclick="openTab(event, 'audio')">Audio Documentation</button>
+                <button class="tab-button" onclick="openTab(event, 'code')">Code</button>
+                <a href="bias-documentation.html" class="tab-button" style="text-decoration: none;">Written Documentation ↗</a>
             </div>
 
-            <div class="scroll-list">
+            <div id="concept" class="tab-content" style="display: block;">
+                <p>
+                    Basically BIAS is supposed to be a companion to me when playing woodwinds. I'm a musician that works with improvisation as my
+                    main method for making music.  Everything is done in SuperCollider, except for adding some minor post-production 
+                    on the clarinet sound in a DAW. 
+
+                    <br><br> I am very inspired by early Swedish electronic music. I'm terrible at doing music using sequencers.
+                    I like impulses(emotional, not electric). I like white noise, filters and sine waves and what you can do with some simple cooking. 
+
+                    <br><br> BIAS can be divided into four steps.
+                    <br><br> It receives sound from an audio input. It then has what I call a slow listener. It gives an output that answers "How have I've been playing recently?". 
+                    this is tricky and not perfect at all. But it gives me a value(0-1) that answers how active I've been lately. So if I have played a lot, then it gives me
+                    1, if I have been mostly silent -> 0. This can function as an LFO for other parameters during performance. 
+                    Then there is a simple sample recorder and a sample playback. I use an IntraMic from Viga Tools to 
+                    get a signal with almost zero noise and no feedback. 
+
+                    <br><br> Both audio and data goes into the heart of the system. Here I use my modules/synths. Instead of having synths that I control using midi or 
+                    controlling by a graphic interface, I feed data to the synths. Amplitude, pitch-info, spectral centroid and flatness are used to trigger 
+                    sound, changing sound, changing pitch, triggering calculations for various stuff. Most of the modules also has a slight 
+                    generative, or independent, behaviour built in. This is so that the modules do not depend on me to play themselves. All of these modules sum up
+                    to a shared signal that then goes in to the fx chain. I'm not an expert on synthesis or synth design. So the library is growing and changing a lot. 
+
+                    <br><br> Im not interested in creating a loop station for my clarinet. So the clean clarinet signal is not going past the modules. If I sample something, it
+                    is mostly the processed signal. And then I can feed that sample in to the modules again. This can create some really fun layers.
+
+                    <br><br> The synths go into an FX chain. The fx-chain system allows me to click-free(almost) swap the order of effects. This opens
+                    up for some fun experiments. It started out with the idea to have like a pitch shifting reverb. Usually when I design effects for 
+                    my music in SuperCollider I try to achieve these big effects that have a lot of different functions. Someone at sccode.org posted
+                    this sitar-synth which split the instrument into the attack(finger/pick), the string, the resonator and the room. I started messing around
+                    with this and realized this was way smarter than building a one-piece synth. So what I did was to divide my pitch shifting reverb into three parts. 
+                    The delay, the pitch and the time. Later, I added a blur as well. Then I started experimenting with shifting the order of these things and got some 
+                    very fun sound. I then added a binshift, a formant and some echo and feedback delays. Then I added some functionality so that I could swap the order
+                    really quick and easy. And I centralized the whole system so that I use 4 macros to control all of the effects. Chaos, density, space and identity. 
+
+                    <br><br>
+                    The last part is just a synth that can do some spatialisation. Autopanning, and expand the system to a multichannel setup. 
+                    Every chain has it's own spatial synth. This makes it possible to create some fun movements in a live setup. 
+
+                    <br><br>
+                    I control the system using a Morningstar MC6 foot pedal and a Faderfox UC4 midi controller. Mostly I just set a "mood". This is like a preset. 
+                    It includes which modules to choose, some base values for the parameter, the fx-chain and some presets there to. 
+                    The idea is to have some kind of control of the system. There is no price for me if I have a completly indepedent system. Just as long as it
+                    is fun to play with and sounds good. The fun comes from getting a lot of inspiration when playing. So with my physical controllers I can 
+                    sample either the clean recording or the sound from the modules. I can  choose a mood. I can choose if the mood is going to follow my playing or counter it.
+                    I can also make some mixing if necessary and I can change the parameters if it sounds bad or not fun enough. I can also use an expression
+                    pedal to morph between different parameter values for the modules. 
+                </p>
+            </div>
+
+            <div id="audio" class="tab-content">
+                <div class="player-container">
+                    <p id="now-playing" style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase;">Select a process recording</p>
+                    <audio id="audio-player" controls style="width: 100%; filter: grayscale(1);"></audio>
+                </div>
                 <ul class="track-list">
-                    <li onclick="playAudio('music/demo_04_260222_comp.mp3', 'Bias demo 260222 04', this)">
-                        <span>Bias demo 260222 04</span>
-                        <span style="opacity:0.5"></span>
-                    </li>
-					<li onclick="playAudio('music/demo_05_260222_comp.mp3', 'Bias demo 260222 05', this)">
-                        <span>Bias demo 260222 05</span>
-                        <span style="opacity:0.5"></span>
-                    </li>
-                     <li onclick="playAudio('music/demo_03_260222.mp3', 'Bias demo 260222 03', this)">
-                        <span>Bias demo 260222 03</span>
-                        <span style="opacity:0.5"></span>
-                    </li>
-                       <li onclick="playAudio('music/demo_01_250424.mp3', 'Bias demo 260224 01', this)">
-                        <span>Bias demo 260224 01</span>
-                        <span style="opacity:0.5"></span>
-                    </li>
-                       <li onclick="playAudio('music/demo_260214.mp3', 'Bias demo 260214', this)">
-                        <span>Bias demo 260214</span>
-                        <span style="opacity:0.5"></span>
-                    </li>
-                    </ul>
+                    <li onclick="playAudio('music/demo_04_260222_comp.mp3', 'Bias demo 260222 04', this)"><span>Bias demo 260222 04</span></li>
+                    <li onclick="playAudio('music/demo_05_260222_comp.mp3', 'Bias demo 260222 05', this)"><span>Bias demo 260222 05</span></li>
+                    <li onclick="playAudio('music/demo_03_260222.mp3', 'Bias demo 260222 03', this)"><span>Bias demo 260222 03</span></li>
+                    <li onclick="playAudio('music/demo_01_250424.mp3', 'Bias demo 260224 01', this)"><span>Bias demo 260224 01</span></li>
+                    <li onclick="playAudio('music/demo_260214.mp3', 'Bias demo 260214', this)"><span>Bias demo 260214</span></li>
+                </ul>
             </div>
-        </section>
 
-        <section class="section">
-            <h2>The Code</h2>
-            <p>This was a soundcheck thing I created so that the modules can adapt to what ever microphone im using. Sometimes I test
-                new modules with my internal laptop mic and sing, and then I want to feel the behaviour as close to "performance ready" as possible. 
-                You have to find a way to make this work for your system. Look for global variables (~) and replace with your own</p>
-            <pre><code>(
+            <div id="code" class="tab-content">
+                <h3>Soundcheck Logic</h3>
+                <pre><code>(
 (
 ~soundcheck = {
     Routine({
@@ -240,10 +212,9 @@
 };
 )
 )</code></pre>
-			<br></br>
-			<p>This is the fx-chain system that I have written. Feel free to try it.</p>
-            <pre><code>
-				/* fx_chain_2601052320.scd */
+
+                <h3>FX-Chain System</h3>
+<pre><code>/* fx_chain_2601052320.scd */
 
 /*
 Search for ~bus and change this to appropriate buses. It should be one bus that is going in to the chain and one that is going out!
@@ -255,7 +226,7 @@ Search for ~bus and change this to appropriate buses. It should be one bus that 
 (
 ~dbg = { |tag, msg|
 	if (~debug == true ) {
-    ("[FXDBG][" ++ tag ++ "] " ++ msg).postln;
+        ("[FXDBG][" ++ tag ++ "] " ++ msg).postln;
 	} {nil}
 };
 
@@ -426,7 +397,7 @@ Search for ~bus and change this to appropriate buses. It should be one bus that 
     // --- Wire FX chain (first synth -> last FX -> sendBus)
     ~wireFXChain.(index, chain, ~bus[index].fxIn, ~bus[index].fxOut);
 
- /*   // --- Make sure last FX sends to sendBus, spatial reads from sendBus
+ /*  // --- Make sure last FX sends to sendBus, spatial reads from sendBus
     if(chain[\synths].notEmpty) {
         lastFX = chain[\synths].last;
         lastFX.set(\out, ~bus[index].fxOut);
@@ -471,25 +442,32 @@ Search for ~bus and change this to appropriate buses. It should be one bus that 
 };
 
 
-)
-
-
-</code></pre>
-        </section>
-
-
-		
+)</code></pre>
+            </div>
+        </div>
     </main>
 
     <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
         function playAudio(src, title, element) {
             const player = document.getElementById('audio-player');
             const display = document.getElementById('now-playing');
             const tracks = document.querySelectorAll('.track-list li');
-            
             tracks.forEach(t => t.classList.remove('active-track'));
             element.classList.add('active-track');
-
             display.innerText = "Playing: " + title;
             player.src = src;
             player.load();
