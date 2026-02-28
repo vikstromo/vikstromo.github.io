@@ -20,12 +20,13 @@
         .section { margin-bottom: 80px; max-width: 800px; }
 
         .tab-nav { display: flex; gap: 40px; border-bottom: 1px solid #ddd; margin-bottom: 40px; }
-        .tab-button {
+        .tab-button, .tab-link {
             background: none; border: none; padding: 15px 0;
             font-family: 'Inter', sans-serif; font-size: 0.8rem;
             text-transform: uppercase; letter-spacing: 0.1em;
             cursor: pointer; opacity: 0.4; transition: 0.3s;
             border-bottom: 3px solid transparent;
+            text-decoration: none; color: #000;
         }
         .tab-button.active { opacity: 1; font-weight: 700; border-bottom: 3px solid #000; }
         .tab-content { display: none; animation: fadeIn 0.4s; }
@@ -68,7 +69,7 @@
                 <button class="tab-button active" onclick="openTab(event, 'concept')">What is it?</button>
                 <button class="tab-button" onclick="openTab(event, 'audio')">Audio Documentation</button>
                 <button class="tab-button" onclick="openTab(event, 'code')">Code</button>
-                <a href="bias-documentation.html" class="tab-button" style="text-decoration: none;">Written Documentation ↗</a>
+                <a href="bias-documentation.html" class="tab-link">Written Documentation</a>
             </div>
 
             <div id="concept" class="tab-content" style="display: block;">
