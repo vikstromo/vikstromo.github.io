@@ -8,51 +8,77 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #F9F9F9; color: #000; font-family: 'Inter', sans-serif; padding: 40px; letter-spacing: -0.02em; }
-
         header { max-width: 1200px; margin: 0 auto 20px auto; }
         h1 { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
         nav { display: flex; gap: 25px; margin-bottom: 15px; }
         nav a { text-decoration: none; color: #000; font-size: 0.9rem; transition: opacity 0.3s; }
         nav a:hover { opacity: 0.5; }
         .divider { height: 8px; background-color: #000; width: 100%; margin-bottom: 60px; }
-
         main { max-width: 1200px; margin: 0 auto; padding-left: 25%; }
-        .section { margin-bottom: 80px; max-width: 750px; }
-        
-        h2 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 40px; }
-        .blog-entry { margin-bottom: 80px; border-bottom: 1px solid #ddd; padding-bottom: 40px; }
-        .date { font-size: 0.75rem; font-weight: 700; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.1em; }
-        h3 { margin: 10px 0 20px 0; font-size: 1.2rem; }
+        .section { margin-bottom: 80px; max-width: 800px; }
+
+        .tab-nav { display: flex; gap: 40px; border-bottom: 1px solid #ddd; margin-bottom: 40px; }
+        .tab-link {
+            text-decoration: none; color: #000; padding: 15px 0;
+            font-family: 'Inter', sans-serif; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            opacity: 0.4; transition: 0.3s; border-bottom: 3px solid transparent;
+        }
+        .tab-link.active { opacity: 1; font-weight: 700; border-bottom: 3px solid #000; }
+
+        .blog-entry { margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px; }
+        .date { font-size: 0.75rem; font-weight: 700; opacity: 0.4; letter-spacing: 0.05em; }
+        h3 { margin: 10px 0 20px 0; font-size: 1.1rem; text-transform: uppercase; }
         p { line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+
+        /* Next/Prev Navigation */
+        .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 20px; border-top: 1px solid #000; }
+        .post-nav a { text-decoration: none; color: #000; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .post-nav a:hover { opacity: 0.5; }
 
         @media (max-width: 768px) { main { padding-left: 0; } }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Olle Vikström</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="portfolio.html">Portfolio</a>
-            <a href="BIAS.html">← Back to BIAS</a>
+            <a href="bio.html">Bio</a>
+            <a href="discography.html">Discography</a>
         </nav>
         <div class="divider"></div>
     </header>
 
     <main>
         <div class="section">
-            <h2>Written Documentation</h2>
+            <h2 style="text-transform: uppercase; margin-bottom: 10px;">Project: BIAS</h2>
+            <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">Autonomous Behavioral Engine for Woodwinds & SuperCollider</p>
 
+            <div class="tab-nav">
+                <a href="BIAS.html" class="tab-link">What is it?</a>
+                <a href="BIAS.html" class="tab-link">Audio Documentation</a>
+                <a href="BIAS.html" class="tab-link">Code</a>
+                <a href="bias-documentation.html" class="tab-link active">Written Documentation</a>
+            </div>
 
-            <article class="blog-entry">
-                <span class="date">Currently nothing</span>
-                <h3>Will try to keep this working, just need to find some good and clean service to help me maintain this.</h3>
-                <p>
-                    
-                </p>
-            </article>
+            <div class="blog-entry">
+                <span class="date">FEBRUARY 2026</span>
+                <h3>The Complexity of Activity Analysis</h3>
+                <p>I realized during a session in a resonant hall that the noise floor isn't just about the microphone—it's about the room. I updated the <code>~soundcheck</code> routine to include a 95th percentile index to ignore sudden transients during the silence phase.</p>
+            </div>
 
+            <div class="blog-entry">
+                <span class="date">JANUARY 2026</span>
+                <h3>Moving from Monolithic to Modular</h3>
+                <p>Initially, my FX chains were fixed. If I wanted a reverb before a delay, I had to write a new SynthDef. The new <code>~wireFXChain</code> logic allows me to swap orders in real-time without audio clicks.</p>
+            </div>
+
+            <div class="post-nav">
+                <a href="#">← Older Entries</a>
+                <a href="#">Newer Entries →</a>
+            </div>
         </div>
     </main>
 </body>
