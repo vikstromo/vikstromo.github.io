@@ -1,0 +1,13 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore any folder named 'private'
+private/
+
+# Ignore common private file types just in case
+*.pdf
+*.docx
+*.jpg
+*.png
+# (Only remove the image ones if you actually want to upload images for the site)
