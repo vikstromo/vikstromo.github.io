@@ -403,8 +403,24 @@ Search for ~bus and change this to appropriate buses. It should be one bus that 
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
         document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
+        if (evt) {
+            evt.currentTarget.className += " active";
+        } else {
+            // If no click event (auto-loading from URL), find the right button and highlight it
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabName)) btn.className += " active";
+            });
+        }
     }
+
+    // NEW: Logic to handle deep-linking from the other page
+    window.onload = function() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            openTab(null, hash);
+        }
+    };
 
     function playAudio(src, title, element) {
         const player = document.getElementById('audio-player');
