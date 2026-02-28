@@ -1,84 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIAS Documentation | Olle Vikström</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #F9F9F9; color: #000; font-family: 'Inter', sans-serif; padding: 40px; letter-spacing: -0.02em; }
-        header { max-width: 1200px; margin: 0 auto 20px auto; }
-        h1 { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-        nav { display: flex; gap: 25px; margin-bottom: 15px; }
-        nav a { text-decoration: none; color: #000; font-size: 0.9rem; transition: opacity 0.3s; }
-        nav a:hover { opacity: 0.5; }
-        .divider { height: 8px; background-color: #000; width: 100%; margin-bottom: 60px; }
-        main { max-width: 1200px; margin: 0 auto; padding-left: 25%; }
-        .section { margin-bottom: 80px; max-width: 800px; }
+---
+layout: default
+title: Written Documentation
+url: /bias-documentation.html
+---
 
-        .tab-nav { display: flex; gap: 40px; border-bottom: 1px solid #ddd; margin-bottom: 40px; }
-        .tab-link {
-            text-decoration: none; color: #000; padding: 15px 0;
-            font-family: 'Inter', sans-serif; font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            opacity: 0.4; transition: 0.3s; border-bottom: 3px solid transparent;
-        }
-        .tab-link.active { opacity: 1; font-weight: 700; border-bottom: 3px solid #000; }
+<div class="section">
+    <h2 style="text-transform: uppercase; margin-bottom: 10px;">Project: BIAS</h2>
+    <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">Autonomous Behavioral Engine for Woodwinds & SuperCollider</p>
 
-        .blog-entry { margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px; }
-        .date { font-size: 0.75rem; font-weight: 700; opacity: 0.4; letter-spacing: 0.05em; }
-        h3 { margin: 10px 0 20px 0; font-size: 1.1rem; text-transform: uppercase; }
-        p { line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    <div class="tab-nav">
+        <a href="/BIAS.html" class="tab-link">What is it?</a>
+        <a href="/BIAS.html" class="tab-link">Audio Documentation</a>
+        <a href="/BIAS.html" class="tab-link">Code</a>
+        <a href="/bias-documentation.html" class="tab-link active">Written Documentation</a>
+    </div>
 
-        /* Next/Prev Navigation */
-        .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 20px; border-top: 1px solid #000; }
-        .post-nav a { text-decoration: none; color: #000; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .post-nav a:hover { opacity: 0.5; }
+    {% for post in site.posts %}
+    <div class="blog-entry">
+        <span class="date">{{ post.date | date: "%B %Y" | upcase }}</span>
+        <h3>{{ post.title }}</h3>
+        {{ post.content }}
+    </div>
+    {% endfor %}
 
-        @media (max-width: 768px) { main { padding-left: 0; } }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Olle Vikström</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="bio.html">Bio</a>
-            <a href="discography.html">Discography</a>
-        </nav>
-        <div class="divider"></div>
-    </header>
-
-    <main>
-        <div class="section">
-            <h2 style="text-transform: uppercase; margin-bottom: 10px;">Project: BIAS</h2>
-            <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">Autonomous Behavioral Engine for Woodwinds & SuperCollider</p>
-
-            <div class="tab-nav">
-                <a href="BIAS.html" class="tab-link">What is it?</a>
-                <a href="BIAS.html" class="tab-link">Audio Documentation</a>
-                <a href="BIAS.html" class="tab-link">Code</a>
-                <a href="bias-documentation.html" class="tab-link active">Written Documentation</a>
-            </div>
-
-            <div class="blog-entry">
-                <span class="date">FEBRUARY 2026</span>
-                <h3>First blogpost</h3>
-                <p> So this will probably fail in a week or two. But I will at least
-                    try to write something when I do something. Most of the work is already done though..  </p>
-            </div>
-
-            
-
-       
-
-            <div class="post-nav">
-                <a href="#">← Older Entries</a>
-                <a href="#">Newer Entries →</a>
-            </div>
-        </div>
-    </main>
-</body>
-</html>
+    <div class="post-nav">
+        <a href="#">← Older Entries</a>
+        <a href="#">Newer Entries →</a>
+    </div>
+</div>
