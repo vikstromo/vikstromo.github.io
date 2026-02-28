@@ -1,0 +1,17 @@
+---
+layout: default
+title: Written Documentation
+---
+
+<section class="section">
+    <h2>Project Diary</h2>
+    <ul>
+      {% for post in site.posts %}
+        <li>
+          <strong>{{ post.date | date: "%B %Y" }}</strong> — {{ post.title }}<br>
+          {{ post.excerpt }}
+          <a href="{{ post.url }}">Read more</a>
+        </li>
+      {% endfor %}
+    </ul>
+</section>

@@ -1,0 +1,15 @@
+{
+	"Blog Entry": {
+	"prefix": "newpost",
+	"body": [
+		"",
+		"<div class=\"blog-entry\">",
+		"    <span class=\"date\">${1:MONTH YEAR}</span>",
+		"    <h3>${2:Title}</h3>",
+		"    <p>${3:Content}</p>",
+		"</div>",
+		"$0"
+	],
+	"description": "Adds a new BIAS blog entry"
+}
+}
