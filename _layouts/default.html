@@ -79,6 +79,55 @@
             .signal-chain { flex-direction: column; gap: 10px; }
             .arrow { transform: rotate(90deg); }
         }
+
+        /* --- DISCOGRAPHY GRID --- */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
+    padding-bottom: 60px;
+}
+
+.album-item {
+    width: 100%;
+    max-width: 350px; /* Prevents it from getting too wide on huge screens */
+    margin-bottom: 0; /* Removes the global li margin if it's interfering */
+}
+
+.album-item strong {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.album-item p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #444;
+    min-height: 3em; /* Keeps the heights somewhat aligned */
+}
+
+.album-item iframe {
+    border: 0;
+    width: 100%; /* Makes the iframe fill the grid column */
+    height: 340px;
+    display: block;
+}
+
+/* Mobile Tweak */
+@media (max-width: 600px) {
+    .album-grid {
+        grid-template-columns: 1fr; /* One album per row on phones */
+        justify-items: center;
+    }
+    .album-item {
+        max-width: 300px;
+    }
+}
     </style>
 </head>
 <body>
