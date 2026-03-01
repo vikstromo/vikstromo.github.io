@@ -80,52 +80,58 @@
             .arrow { transform: rotate(90deg); }
         }
 
-        /* --- DISCOGRAPHY GRID --- */
+        /* --- DISCOGRAPHY GRID (Spacious Version) --- */
 .album-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 40px;
-    margin-top: 20px;
-    padding-bottom: 60px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 60px 40px; 
+    margin-top: 40px;
+    padding-bottom: 100px;
 }
 
 .album-item {
     width: 100%;
-    max-width: 350px; /* Prevents it from getting too wide on huge screens */
-    margin-bottom: 0; /* Removes the global li margin if it's interfering */
+    display: flex;
+    flex-direction: column;
 }
 
 .album-item strong {
     display: block;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+    font-size: 1rem; 
+    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    border-bottom: 1px solid #000; 
+    padding-bottom: 5px;
+    align-self: flex-start;
 }
 
 .album-item p {
-    font-size: 0.8rem;
-    line-height: 1.4;
-    margin-bottom: 15px;
-    color: #444;
-    min-height: 3em; /* Keeps the heights somewhat aligned */
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 25px; 
+    color: #555;
+    min-height: 4.5em; 
 }
 
 .album-item iframe {
     border: 0;
-    width: 100%; /* Makes the iframe fill the grid column */
-    height: 340px;
+    width: 100%;
+    height: 420px; 
     display: block;
+    filter: grayscale(0.2); 
+    transition: filter 0.3s;
+}
+
+.album-item iframe:hover {
+    filter: grayscale(0);
 }
 
 /* Mobile Tweak */
 @media (max-width: 600px) {
     .album-grid {
-        grid-template-columns: 1fr; /* One album per row on phones */
-        justify-items: center;
-    }
-    .album-item {
-        max-width: 300px;
+        grid-template-columns: 1fr;
+        gap: 80px; 
     }
 }
     </style>
