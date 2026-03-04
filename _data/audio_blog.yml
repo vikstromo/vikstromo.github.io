@@ -1,3 +1,8 @@
+- title: "Bias demo 260304"
+  file: "music/demo_01_260304_brain.mp3"
+  date: "MARCH 2026"
+  details: "This is the first try with the brain-function. "
+
 - title: "Bias demo 260222 04"
   file: "music/demo_04_260222_comp.mp3"
   date: "FEB 2026"
@@ -22,3 +27,4 @@
   file: "music/demo_260214.mp3"
   date: "FEB 2026"
   details: "Here I tried a routine that just automatically changed what module was being active. There is a sitar-simulation in the beginning that I'm not very fond of. It makes the clarinet behave like a midi-controller for a monophonic synth. "
+
