@@ -12,7 +12,7 @@ Basically what it does is two things:
 
 I think it is best to start with the routine that I call, because from there we can dive in to the rest. 
 
-````
+```
 ~fb.otherbrain = { |self, i, button|
     var v = ~fbs[i];
     var silenceCounter = 0, silenceGrace = 40, isActive = false;
@@ -156,13 +156,14 @@ When it has calculated it's values it goes through a list ranging from rhytmic t
 It then checks: { (a[\noteCount] >= 3) && (avgNoteDur < 0.5) } { \rhythmic } -> if not move on. Here I have experimented with some different setups. I did include flat for a while but then a lot of noisy phrases became rhytmic. 
 
 For melodic phrases I use || so that it allows both short notes in a melody and long notes. 
+
 ```
 { (pitchRange >= 7.0 && (activeTime > 1.2)) || (a[\noteCount] >= 3 && (pitchRange >= 3.0)) } { \melodic }
 ````
 
 and just to show you how the "ears" look: 
 
-````
+```
 ~fb.brainListen = { |self, i|
     var v = ~fbs[i];
     var a = v[\analysis];
@@ -333,13 +334,13 @@ In brainChoice I end with this:
             "    [Choice] % (Phrase %). Nudging...".format(style, currentCount).postln;
             self.brainNudge(idx, dna, dynamicLerp);
         };
-````
+```
 
 The first linear interpolation(lerp) is used to adjust how reactive the brain is. So if I play melodic 1 time it moves the params closer to melodic values, but only with 0.2 + (1 * 0.05), so 25 %. If I would like the brain more reactive I would raise the multiplier, perhaps to 0.1, but that makes it quite reactive. 
 
 Then I call fb.brainNudge which is a big pile of settings: 
 
-````
+```
 ~fb.brainNudge = { |self, i, targetDNA, lerp = 0.35|
     var v = ~fbs[i];
     var mod = v[\modParams];
