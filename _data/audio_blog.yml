@@ -3,15 +3,28 @@
   date: "MARCH 2026"
   details: "This is the first try with the brain-function. "
 
-- title: "Bias demo 260222 04"
-  file: "music/demo_04_260222_comp.mp3"
-  date: "FEB 2026"
-  details: "Sometimes I also want to be a electronics musician. So you can hear from about 7:40 how the sounds change quite a lot and that there is some delay caused by changed delay time. That is me just twisting knobs on my controller. "
+
+- title: "Bias demo 260302 - ambient"
+  file: "music/demo_05_260302_ambient.mp3"
+  date: "MARCH 2026"
+  details: "Playing  with a more ambient and harmonic setup "
+
+- title: "Bias demo 260302 organ"
+  file: "music/demo_01_260302_organ.mp3"
+  date: "MARCH 2026"
+  details: "Fixed the organ to have more variety and better harmonic 'intuition'. "
+
 
 - title: "Bias demo 260222 05"
   file: "music/demo_05_260222_comp.mp3"
   date: "FEB 2026"
   details: "From 7 minutes I think this showcase some fun things with the system. I use a combination of  bells, switch and glitch. Bells produce almost like this Miles Davis early fusion era rhodes movement. I think Chick Corea use like a rhodes with a ring modulator on the early records. And then there is switch that just triggers these different white noise sounds through different filters. And glitch is just glitchy, creating strange sounds. "
+
+- title: "Bias demo 260222 04"
+  file: "music/demo_04_260222_comp.mp3"
+  date: "FEB 2026"
+  details: "Sometimes I also want to be a electronics musician. So you can hear from about 7:40 how the sounds change quite a lot and that there is some delay caused by changed delay time. That is me just twisting knobs on my controller. "
+
 
 - title: "Bias demo 260222 03"
   file: "music/demo_03_260222.mp3"
