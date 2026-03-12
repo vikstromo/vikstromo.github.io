@@ -73,12 +73,46 @@
         code { font-family: 'Space Mono', monospace; font-size: 0.85rem; line-height: 1.5; color: #333; }
 
         /* Mobile Fix */
-        @media (max-width: 768px) { 
-            main { padding-left: 0; } 
-            body { padding: 20px; } 
-            .signal-chain { flex-direction: column; gap: 10px; }
-            .arrow { transform: rotate(90deg); }
-        }
+      @media (max-width: 768px) { 
+    body { padding: 15px; } /* Reduce outer padding on mobile */
+    
+    main { padding: 0; } 
+
+    /* Force all flex containers to stack vertically */
+    div[style*="display: flex"], 
+    .docs-layout { 
+        flex-direction: column !important; 
+        gap: 20px !important; 
+    }
+
+    /* Make sidebars full width instead of 250px */
+    aside, 
+    aside[style*="width: 250px"] { 
+        width: 100% !important; 
+        border-right: none !important; 
+        border-bottom: 1px solid #eee; 
+        padding-right: 0 !important; 
+        padding-bottom: 20px;
+    }
+
+    /* Allow the content area to take up the full screen width */
+    article, 
+    div[style*="flex-grow: 1"] { 
+        max-width: 100% !important; 
+    }
+
+    /* Signal Chain stacking */
+    .signal-chain { flex-direction: column; gap: 10px; }
+    .arrow { transform: rotate(90deg); padding: 5px 0; }
+
+    /* Make tab navigation scrollable so it doesn't break the layout */
+    .tab-nav { 
+        gap: 20px; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        -webkit-overflow-scrolling: touch;
+    }
+}
 /* --- DISCOGRAPHY GRID  */
 .album-grid {
     display: grid;
