@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "brain explained"
 date: 2026-03-04
 ---
