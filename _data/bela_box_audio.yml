@@ -1,9 +1,9 @@
 - title: "Bela Box  Test without bela"
-  file: "261022_bela_box_take1.mp3"
+  file: "music/261022_bela_box_take1.mp3"
   date: "OCTOBER 2026"
   details: "First tests running SuperCollider and using UC4 to control."
 
 - title: "Bela Box test with out Bela"
-  file: "261022_bela_box_take2.mp3"
+  file: "music/261022_bela_box_take2.mp3"
   date: "OCTOBER 2026"
   details: "First tests running SuperCollider and using UC4 to control."
