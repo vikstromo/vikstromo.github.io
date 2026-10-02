@@ -182,13 +182,14 @@ code {
 <body>
     <header>
         <h1>Olle Vikström</h1>
-        <nav>
-            <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
-            <a href="/portfolio.html" {% if page.url == "/portfolio.html" %}class="active"{% endif %}>Portfolio</a>
-            <a href="/bio.html" {% if page.url == "/bio.html" %}class="active"{% endif %}>Bio</a>
-            <a href="/discography.html" {% if page.url == "/discography.html" %}class="active"{% endif %}>Discography</a>
-            <a href="/BIAS.html" {% if page.url == "/BIAS.html" or page.url == "/bias-documentation.html" %}class="active"{% endif %}>BIAS</a>
-        </nav>
+       <nav>
+    <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+    <a href="/portfolio.html" {% if page.url == "/portfolio.html" %}class="active"{% endif %}>Portfolio</a>
+    <a href="/bio.html" {% if page.url == "/bio.html" %}class="active"{% endif %}>Bio</a>
+    <a href="/discography.html" {% if page.url == "/discography.html" %}class="active"{% endif %}>Discography</a>
+    <a href="/BIAS.html" {% if page.url == "/BIAS.html" or page.url == "/bias-documentation.html" %}class="active"{% endif %}>BIAS</a>
+    <a href="/bela-box.html" {% if page.url == "/bela-box.html" or page.url == "/bela-box-documentation.html" %}class="active"{% endif %}>Bela Box</a>
+</nav>
         <div class="divider"></div>
     </header>
     <main>

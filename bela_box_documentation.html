@@ -1,0 +1,43 @@
+---
+layout: default
+title: Written Documentation - Bela Box
+url: /bela-box-documentation.html
+---
+
+<div class="section" style="max-width: 100%;">
+    <h2 style="text-transform: uppercase; margin-bottom: 10px;">Project: Bela Box</h2>
+    <p style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 40px;">Documentation and Process</p>
+
+    <div class="tab-nav">
+        <a href="/bela-box.html#concept" class="tab-link">What is it?</a>
+        <a href="/bela-box.html#audio" class="tab-link">Audio Documentation</a>
+        <a href="/bela-box.html#code" class="tab-link">Code</a>
+        <a href="/bela-box-documentation.html" class="tab-link active">Written Documentation</a>
+    </div>
+
+    <div class="docs-layout">
+        <aside style="width: 250px; flex-shrink: 0; border-right: 1px solid #eee; padding-right: 20px;">
+            <h4 style="text-transform: uppercase; font-size: 0.7rem; opacity: 0.5; margin-bottom: 25px;">All Entries</h4>
+            <ul style="list-style: none; padding: 0;">
+                {% for post in site.posts %}
+                <li style="margin-bottom: 20px;">
+                    <a href="{{ post.url }}" style="text-decoration: none; color: #888; font-size: 0.85rem;">{{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <div style="flex-grow: 1; max-width: 800px;">
+            {% assign latest_post = site.posts.first %}
+            {% if latest_post %}
+                <span style="font-size: 0.75rem; font-weight: 700; opacity: 0.3;">{{ latest_post.date | date: "%B %Y" | upcase }}</span>
+                <h3 style="margin: 10px 0 30px 0; font-size: 1.5rem; border: none;">{{ latest_post.title }}</h3>
+                <div class="post-preview">
+                    {{ latest_post.content }}
+                </div>
+            {% else %}
+                <p>No documentation entries found yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
