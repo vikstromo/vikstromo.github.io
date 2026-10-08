@@ -5,7 +5,6 @@
 
 - title: "Bela Box test with out Bela"
   file: "music/261022_bela_box_take2.mp3"
-<<<<<<< HEAD
   date: "September 2026"
   details: "First tests running SuperCollider and using UC4 to control."
 
@@ -13,12 +12,3 @@
   file: "music/261008_take1.mp3"
   date: "OCTOBER 2026"
   details: "Too much reverb. new drum machine"
-=======
-  date: "september 2026"
-  details: "First tests running SuperCollider and using UC4 to control."
-
-- title: "Bela Box test with out Bela"
-  file: "music/261008_bela_box_take1.mp3"
-  date: "OCTOBER 2026"
-  details: "changed drum machine"
->>>>>>> 280f512bc14a1fa44e3e9780b57e396451622b8f
